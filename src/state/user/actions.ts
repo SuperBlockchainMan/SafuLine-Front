@@ -63,5 +63,7 @@ export const addWatchlistPool = createAction<{ address: string }>('user/addWatch
 export const hidePhishingWarningBanner = createAction<void>('user/hidePhishingWarningBanner')
 
 export const setIsExchangeChartDisplayed = createAction<boolean>('user/toggleIsExchangeChartDisplayed')
+export const setIsLiquidityCardDisplayed = createAction<boolean>('user/toggleIsLiquidityCardDisplayed')
+export const setIsTransactionCardDisplayed = createAction<boolean>('user/toggleIsTransactionCardDisplayed')
 export const setChartViewMode = createAction<ChartViewMode>('user/setChartViewMode')
 export const setSubgraphHealthIndicatorDisplayed = createAction<boolean>('user/setSubgraphHealthIndicatorDisplayed')

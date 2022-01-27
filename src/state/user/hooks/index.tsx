@@ -33,6 +33,8 @@ import {
   updateUserExpertModeAcknowledgementShow,
   hidePhishingWarningBanner,
   setIsExchangeChartDisplayed,
+  setIsLiquidityCardDisplayed,
+  setIsTransactionCardDisplayed,
   ChartViewMode,
   setChartViewMode,
   setSubgraphHealthIndicatorDisplayed,
@@ -69,7 +71,7 @@ export function usePhishingBannerManager(): [boolean, () => void] {
 
 // Get user preference for exchange price chart
 // For mobile layout chart is hidden by default
-export function useExchangeChartManager(isMobile: boolean): [boolean, (isDisplayed: boolean) => void] {
+export function useExchangeChartManager(): [boolean, (isDisplayed: boolean) => void] {
   const dispatch = useDispatch<AppDispatch>()
   const isChartDisplayed = useSelector<AppState, AppState['user']['isExchangeChartDisplayed']>(
     (state) => state.user.isExchangeChartDisplayed,
@@ -82,7 +84,40 @@ export function useExchangeChartManager(isMobile: boolean): [boolean, (isDisplay
     [dispatch],
   )
 
-  return [isMobile ? false : isChartDisplayed, setUserChartPreference]
+  return [isChartDisplayed, setUserChartPreference]
+}
+
+export function useLiquidityCardManager(): [boolean, (isDisplayed: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const isLiquidityDisplayed = useSelector<AppState, AppState['user']['isLiquidityCardDisplayed']>(
+    (state) => state.user.isLiquidityCardDisplayed,
+  )
+
+  const setUserLiquidityCardPreference = useCallback(
+    (isDisplayed: boolean) => {
+      dispatch(setIsLiquidityCardDisplayed(isDisplayed))
+    },
+    [dispatch],
+  )
+
+  return [isLiquidityDisplayed, setUserLiquidityCardPreference]
+}
+
+export function useTransactionCardManager(): [boolean, (isDisplayed: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const isTransactionCardDisplayed = useSelector<AppState, AppState['user']['isTransactionCardDisplayed']>(
+    (state) => state.user.isTransactionCardDisplayed,
+  )
+
+  const setUserTransactionCardPreference = useCallback(
+    (isDisplayed: boolean) => {
+      console.log("pooh, user isDisplayed = ", isDisplayed)
+      dispatch(setIsTransactionCardDisplayed(isDisplayed))
+    },
+    [dispatch],
+  )
+
+  return [isTransactionCardDisplayed, setUserTransactionCardPreference]
 }
 
 export function useExchangeChartViewManager() {

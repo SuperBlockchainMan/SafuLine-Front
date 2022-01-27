@@ -29,6 +29,7 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import SwapBottomMenu from './views/Swap/components/SwapBottomMenu'
 import { useInactiveListener } from './hooks/useInactiveListener'
 import useSentryUser from './hooks/useSentryUser'
 
@@ -181,7 +182,7 @@ const App: React.FC = () => {
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
-      <EasterEgg iterations={2} />
+      <SwapBottomMenu />
       <ToastListener />
       <SubgraphHealthIndicator />
     </Router>

@@ -30,6 +30,8 @@ import {
   updateUserExpertModeAcknowledgementShow,
   hidePhishingWarningBanner,
   setIsExchangeChartDisplayed,
+  setIsLiquidityCardDisplayed,
+  setIsTransactionCardDisplayed,
   setChartViewMode,
   ChartViewMode,
   setSubgraphHealthIndicatorDisplayed,
@@ -70,6 +72,8 @@ export interface UserState {
   audioPlay: boolean
   isDark: boolean
   isExchangeChartDisplayed: boolean
+  isLiquidityCardDisplayed: boolean
+  isTransactionCardDisplayed: boolean
   isSubgraphHealthIndicatorDisplayed: boolean
   userChartViewMode: ChartViewMode
   userFarmStakedOnly: FarmStakedOnly
@@ -101,6 +105,8 @@ export const initialState: UserState = {
   audioPlay: true,
   isDark: false,
   isExchangeChartDisplayed: true,
+  isLiquidityCardDisplayed: true,
+  isTransactionCardDisplayed: true,  
   isSubgraphHealthIndicatorDisplayed: false,
   userChartViewMode: ChartViewMode.BASIC,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
@@ -247,6 +253,12 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(setIsExchangeChartDisplayed, (state, { payload }) => {
       state.isExchangeChartDisplayed = payload
+    })
+    .addCase(setIsLiquidityCardDisplayed, (state, { payload }) => {
+      state.isLiquidityCardDisplayed = payload
+    })
+    .addCase(setIsTransactionCardDisplayed, (state, { payload }) => {
+      state.isTransactionCardDisplayed = payload
     })
     .addCase(setChartViewMode, (state, { payload }) => {
       state.userChartViewMode = payload
