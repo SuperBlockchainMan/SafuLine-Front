@@ -5,14 +5,14 @@ export const ClickableColumnHeader = styled(Text)`
   cursor: pointer;
 `
 
-export const TableWrapper = styled(Flex)`
+export const TableWrapper = styled(Flex)<{ drawer?: boolean }>`
   width: 100%;
   padding-top: 16px;
   flex-direction: column;
   gap: 16px;
   background-color: ${({ theme }) => theme.card.background};
   border-radius: ${({ theme }) => theme.radii.card};
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border: 1px solid ${({ theme, drawer }) => (drawer ? "none" : theme.colors.cardBorder)};
 `
 
 export const PageButtons = styled.div`

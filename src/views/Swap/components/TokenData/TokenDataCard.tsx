@@ -8,18 +8,20 @@ import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 
 const StyledCard = styled(Card)`
   width: 100%;
+  background: transparent;
 `
 
 interface TokenDataCardProps {
   address: string
+  drawer?: boolean
 }
 
-const TokenDataCard: React.FC<TokenDataCardProps> = ({ address }) => {
+const TokenDataCard: React.FC<TokenDataCardProps> = ({ address, drawer = false }) => {
   const { t } = useTranslation()
   const tokenData = useTokenData(address)
 
   return (
-    <StyledCard>
+    <StyledCard mt={drawer ? "50px" : "0px"} >
       <Box p="24px">
         <Text bold small color="secondary" fontSize="12px" textTransform="uppercase">
           {t('Liquidity')}

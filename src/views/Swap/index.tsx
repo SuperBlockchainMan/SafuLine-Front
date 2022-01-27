@@ -57,6 +57,8 @@ import {
   useUserSlippageTolerance,
   useUserSingleHopOnly,
   useExchangeChartManager,
+  useLiquidityCardManager,
+  useTransactionCardManager,
 } from '../../state/user/hooks'
 import { PoolUpdater, ProtocolUpdater, TokenUpdater } from '../../state/info/updaters'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
@@ -70,6 +72,8 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import { getTokenAddress } from './components/Chart/utils'
 import TokenInfo from './components/TokenInfo'
+import TokenDataCard from './components/TokenData/TokenDataCard'
+import TransactionTable from './components/TokenData/TransactionTable'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -111,12 +115,9 @@ export default function Swap({ history }: RouteComponentProps) {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const [isChartExpanded, setIsChartExpanded] = useState(false)
-  const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
-  const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
-
-  useEffect(() => {
-    setUserChartPreference(isChartDisplayed)
-  }, [isChartDisplayed, setUserChartPreference])
+  const [userChartPreference, setUserChartPreference] = useExchangeChartManager()
+  const [userLiquidityCardPreference, setUserLiquidityCardPreference] = useLiquidityCardManager()
+  const [userTransactionCardPreference, setUserTransactionCardPreference] = useTransactionCardManager()
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -394,8 +395,8 @@ export default function Swap({ history }: RouteComponentProps) {
                   <CurrencyInputHeader
                     title={t('Swap')}
                     subtitle={t('Trade tokens in an instant')}
-                    setIsChartDisplayed={setIsChartDisplayed}
-                    isChartDisplayed={isChartDisplayed}
+                    setIsChartDisplayed={() => {setUserChartPreference(!userChartPreference)}}
+                    isChartDisplayed={userChartPreference}
                   />
                   <Wrapper id="swap-page">
                     <AutoColumn gap="md">
@@ -616,7 +617,7 @@ export default function Swap({ history }: RouteComponentProps) {
               outputCurrency={currencies[Field.OUTPUT]}
               isChartExpanded={isChartExpanded}
               setIsChartExpanded={setIsChartExpanded}
-              isChartDisplayed={isChartDisplayed}
+              isChartDisplayed={userChartPreference}
               currentSwapPrice={singleTokenPrice}
             />
           )}
@@ -629,16 +630,26 @@ export default function Swap({ history }: RouteComponentProps) {
                 outputCurrency={currencies[Field.OUTPUT]}
                 isChartExpanded={isChartExpanded}
                 setIsChartExpanded={setIsChartExpanded}
-                isChartDisplayed={isChartDisplayed}
+                isChartDisplayed={userChartPreference}
                 currentSwapPrice={singleTokenPrice}
                 isMobile
               />
             }
-            isOpen={isChartDisplayed}
-            setIsOpen={setIsChartDisplayed}
+            isOpen={userChartPreference}
+            setIsOpen={() => {setUserChartPreference(!userChartPreference)}}
           />
         </Flex>
         { tokenAddress && !isMobile && <TokenInfo address={tokenAddress} /> }
+        <BottomDrawer
+          content={<TokenDataCard address={tokenAddress} drawer />}
+          isOpen={userLiquidityCardPreference}
+          setIsOpen={() => {setUserLiquidityCardPreference(!userLiquidityCardPreference)}}
+        />
+        <BottomDrawer
+          content={<TransactionTable address={tokenAddress} drawer />}
+          isOpen={userTransactionCardPreference}
+          setIsOpen={() => {setUserTransactionCardPreference(!userTransactionCardPreference)}}
+        />
       </Page>
     </>
   )

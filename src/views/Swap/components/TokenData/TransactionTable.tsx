@@ -13,9 +13,8 @@ import { useTokenData, useTokenTransactions } from 'state/info/hooks'
 import { PoolUpdater, ProtocolUpdater, TokenUpdater } from 'state/info/updaters'
 import { ClickableColumnHeader, TableWrapper, PageButtons, Arrow, Break } from '../../../Info/components/InfoTables/shared'
 
-const ITEMS_PER_INFO_TABLE_PAGE = 4
-
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ drawer?: boolean }>`
+  margin-top: ${({ drawer }) => (drawer ? "50px" : "0px")};
   width: 100%;
   min-width: 304px;
 `
@@ -134,9 +133,14 @@ const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
 
 interface TransactionTableProps {
   address: string
+  drawer?: boolean
 }
 
-const TransactionTable: React.FC<TransactionTableProps> = ({ address }) => {
+const TransactionTable: React.FC<TransactionTableProps> = ({ address, drawer = false }) => {
+  let pageItems = 4
+  if (drawer) {
+    pageItems = 8
+  }
   const tokenData = useTokenData(address)
   const transactions = useTokenTransactions(address)
   const [sortField, setSortField] = useState(SORT_FIELD.timestamp)
@@ -168,9 +172,9 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ address }) => {
           .filter((x) => {
             return txFilter === undefined || x.type === txFilter
           })
-          .slice(ITEMS_PER_INFO_TABLE_PAGE * (page - 1), page * ITEMS_PER_INFO_TABLE_PAGE)
+          .slice(pageItems * (page - 1), page * pageItems)
       : []
-  }, [transactions, page, sortField, sortDirection, txFilter])
+  }, [transactions, page, sortField, sortDirection, txFilter, pageItems])
 
   // Update maxPage based on amount of items & applied filtering
   useEffect(() => {
@@ -178,13 +182,13 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ address }) => {
       const filteredTransactions = transactions.filter((tx) => {
         return txFilter === undefined || tx.type === txFilter
       })
-      if (filteredTransactions.length % ITEMS_PER_INFO_TABLE_PAGE === 0) {
-        setMaxPage(Math.floor(filteredTransactions.length / ITEMS_PER_INFO_TABLE_PAGE))
+      if (filteredTransactions.length % pageItems === 0) {
+        setMaxPage(Math.floor(filteredTransactions.length / pageItems))
       } else {
-        setMaxPage(Math.floor(filteredTransactions.length / ITEMS_PER_INFO_TABLE_PAGE) + 1)
+        setMaxPage(Math.floor(filteredTransactions.length / pageItems) + 1)
       }
     }
-  }, [transactions, txFilter])
+  }, [transactions, txFilter, pageItems])
 
   const handleFilter = useCallback(
     (newFilter: TransactionType) => {
@@ -213,8 +217,8 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ address }) => {
   )
 
   return (
-    <Wrapper>
-      <TableWrapper>
+    <Wrapper drawer={drawer} >
+      <TableWrapper drawer={drawer} >
         <ResponsiveGrid>
           <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
             {t('Action')}
