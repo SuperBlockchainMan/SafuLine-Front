@@ -617,7 +617,7 @@ export default function Swap({ history }: RouteComponentProps) {
               outputCurrency={currencies[Field.OUTPUT]}
               isChartExpanded={isChartExpanded}
               setIsChartExpanded={setIsChartExpanded}
-              isChartDisplayed={userChartPreference}
+              isChartDisplayed={true}
               currentSwapPrice={singleTokenPrice}
             />
           )}
