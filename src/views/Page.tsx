@@ -9,7 +9,7 @@ const StyledPage = styled.div<{ $removePadding: boolean }>`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
+  padding: ${({ $removePadding }) => ($removePadding ? '0' : '10px')};
   padding-bottom: 0;
   min-height: calc(100vh - 64px);
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
@@ -19,12 +19,12 @@ const StyledPage = styled.div<{ $removePadding: boolean }>`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: ${({ $removePadding }) => ($removePadding ? '0' : '24px')};
+    padding: ${({ $removePadding }) => ($removePadding ? '0' : '10px')};
     padding-bottom: 0;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding: ${({ $removePadding }) => ($removePadding ? '0' : '32px')};
+    padding: ${({ $removePadding }) => ($removePadding ? '0' : '10px')};
     padding-bottom: 0;
     min-height: calc(100vh - 100px);
   }

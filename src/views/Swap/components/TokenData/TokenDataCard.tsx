@@ -11,6 +11,14 @@ const StyledCard = styled(Card)`
   background: transparent;
 `
 
+const StyledPercent = styled(Percent)`
+  line-height: 1;
+`
+
+const StyledText = styled(Text)`
+  line-height: 1.17;
+`
+
 interface TokenDataCardProps {
   address: string
   drawer?: boolean
@@ -27,52 +35,52 @@ const TokenDataCard: React.FC<TokenDataCardProps> = ({ address, drawer = false }
           {t('Liquidity')}
         </Text>
         { tokenData ?
-          <Text bold fontSize="24px">
+          <StyledText bold fontSize="24px">
             ${formatAmount(tokenData.liquidityUSD)}
-          </Text>
+          </StyledText>
           :
           <Skeleton />
         }
         { tokenData ?
-          <Percent value={tokenData.liquidityUSDChange} />
+          <StyledPercent value={tokenData.liquidityUSDChange} />
           :
           <Skeleton />
         }
 
-        <Text mt="24px" bold color="secondary" fontSize="12px" textTransform="uppercase">
+        <Text mt="10px" bold color="secondary" fontSize="12px" textTransform="uppercase">
           {t('Volume 24H')}
         </Text>
         { tokenData ?
-          <Text bold fontSize="24px" textTransform="uppercase">
+          <StyledText bold fontSize="24px" textTransform="uppercase">
             ${formatAmount(tokenData.volumeUSD)}
-          </Text>
+          </StyledText>
           :
           <Skeleton />
         }
         {tokenData ? 
-          <Percent value={tokenData.volumeUSDChange} />
+          <StyledPercent value={tokenData.volumeUSDChange} />
           :
           <Skeleton />
         }
 
-        <Text mt="24px" bold color="secondary" fontSize="12px" textTransform="uppercase">
+        <Text mt="10px" bold color="secondary" fontSize="12px" textTransform="uppercase">
           {t('Volume 7D')}
         </Text>
         { tokenData ? 
-          <Text bold fontSize="24px">
+          <StyledText bold fontSize="24px">
             ${formatAmount(tokenData.volumeUSDWeek)}
-          </Text>
+          </StyledText>
           :
           <Skeleton />
         }
 
-        <Text mt="24px" bold color="secondary" fontSize="12px" textTransform="uppercase">
+        <Text mt="10px" bold color="secondary" fontSize="12px" textTransform="uppercase">
           {t('Transactions 24H')}
         </Text>
         { tokenData ?
-          <Text bold fontSize="24px">
+          <StyledText bold fontSize="24px">
             {formatAmount(tokenData.txCount, { isInteger: true })}
-          </Text>
+          </StyledText>
           :
           <Skeleton />
         }

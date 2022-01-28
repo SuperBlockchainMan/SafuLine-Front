@@ -11,12 +11,21 @@ import { Transaction, TransactionType } from 'state/info/types'
 import { useTranslation } from 'contexts/Localization'
 import { useTokenData, useTokenTransactions } from 'state/info/hooks'
 import { PoolUpdater, ProtocolUpdater, TokenUpdater } from 'state/info/updaters'
-import { ClickableColumnHeader, TableWrapper, PageButtons, Arrow, Break } from '../../../Info/components/InfoTables/shared'
+import { ClickableColumnHeader, TableWrapper, Arrow, Break } from '../../../Info/components/InfoTables/shared'
 
 const Wrapper = styled.div<{ drawer?: boolean }>`
   margin-top: ${({ drawer }) => (drawer ? "50px" : "0px")};
   width: 100%;
   min-width: 304px;
+`
+
+const PageButtons = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.2em;
+  margin-bottom: 0.6em;
 `
 
 const ResponsiveGrid = styled.div`
@@ -58,6 +67,7 @@ const ResponsiveGrid = styled.div`
       display: none;
     }
   }
+  height: 15px;
 `
 
 const RadioGroup = styled(Flex)`
@@ -139,7 +149,7 @@ interface TransactionTableProps {
 const TransactionTable: React.FC<TransactionTableProps> = ({ address, drawer = false }) => {
   let pageItems = 4
   if (drawer) {
-    pageItems = 8
+    pageItems = 6
   }
   const tokenData = useTokenData(address)
   const transactions = useTokenTransactions(address)
