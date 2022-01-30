@@ -63,7 +63,7 @@ import {
 import { PoolUpdater, ProtocolUpdater, TokenUpdater } from '../../state/info/updaters'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import InfoSearch from '../Info/components/InfoSearch'
+import TokenSearch from './components/TokenData/TokenSearch'
 import CircleLoader from '../../components/Loader/CircleLoader'
 import Page from '../Page'
 import SwapWarningModal from './components/SwapWarningModal'
@@ -154,6 +154,8 @@ export default function Swap({ history }: RouteComponentProps) {
     [Field.INPUT]: { currencyId: inputCurrencyId },
     [Field.OUTPUT]: { currencyId: outputCurrencyId },
   } = useSwapState()
+
+  const [tokenAddress, setTokenAddress] = useState("0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82")
 
   const {
     wrapType,
@@ -303,6 +305,11 @@ export default function Swap({ history }: RouteComponentProps) {
   }
 
   useEffect(() => {
+    const address = getTokenAddress(outputCurrencyId)
+    setTokenAddress(address)
+  }, [outputCurrencyId])
+
+  useEffect(() => {
     if (swapWarningCurrency) {
       onPresentSwapWarningModal()
     }
@@ -374,8 +381,6 @@ export default function Swap({ history }: RouteComponentProps) {
     'confirmSwapModal',
   )
 
-  const tokenAddress = getTokenAddress(outputCurrencyId)
-
   return (
     <>
       <ProtocolUpdater />
@@ -383,7 +388,7 @@ export default function Swap({ history }: RouteComponentProps) {
       <TokenUpdater />
       <Flex width={['100%']} px="20px" py="5px" justifyContent="end">
         <Box width={['100%', '100%', '250px']}>
-          <InfoSearch />
+          <TokenSearch setTokenAddress={setTokenAddress} onTokenSelect={handleOutputSelect} />
         </Box>
       </Flex>
       <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
@@ -617,7 +622,7 @@ export default function Swap({ history }: RouteComponentProps) {
               outputCurrency={currencies[Field.OUTPUT]}
               isChartExpanded={isChartExpanded}
               setIsChartExpanded={setIsChartExpanded}
-              isChartDisplayed={true}
+              isChartDisplayed
               currentSwapPrice={singleTokenPrice}
             />
           )}

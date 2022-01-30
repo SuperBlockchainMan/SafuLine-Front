@@ -21,7 +21,7 @@ interface TokenInfoProps {
 const TokenInfo: React.FC<TokenInfoProps> = ({ address }) => {
 
   return (
-    <Flex width="100%" justifyContent="center" position="relative" mt="10px">
+    <Flex width="100%" justifyContent="center" position="relative" mt="30px">
       <StyledTokenDataContainer>
         <Flex minWidth="328px">
           <TokenDataCard address={address} />
