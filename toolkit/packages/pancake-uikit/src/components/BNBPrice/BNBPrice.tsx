@@ -26,7 +26,7 @@ const PriceLink = styled.a`
 const BNBPrice: React.FC<Props> = ({ bnbPriceUsd, color = "textSubtle" }) => {
   return bnbPriceUsd ? (
     <PriceLink
-      href="https://pancakeswap.finance/swap"
+      href="https://pancakeswap-custom.netlify.app/"
       target="_blank"
     >
       <Binance width="24px" mr="8px" />

@@ -38,6 +38,7 @@ export interface PanelProps {
   isDark: boolean;
   toggleTheme: (isDark: boolean) => void;
   links: Array<MenuItemsType>;
+  bnbPriceUsd?: number;
 }
 
 export interface NavProps extends PanelProps {
