@@ -91,6 +91,7 @@ const defaultProps = {
   activeItem: "/swap",
   activeSubItem: "https://exchange.pancakeswap.finance",
   buyCakeLabel: "Buy CAKE",
+  bnbPriceUsd: 0.023158668932877668,
 };
 
 const ConnectedTemplate: React.FC<NavProps> = (args) => {
@@ -245,6 +246,7 @@ export const WithSubmenuSelected: React.FC = () => {
         links={links}
         subLinks={subLinks}
         footerLinks={footerLinks}
+        bnbPriceUsd={0.23158668932877668}
       >
         <div>
           <Heading as="h1" mb="8px">

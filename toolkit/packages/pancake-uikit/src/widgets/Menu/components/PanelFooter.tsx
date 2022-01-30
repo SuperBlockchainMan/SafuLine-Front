@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MENU_ENTRY_HEIGHT } from "../config";
 import { PanelProps, PushedProps } from "../types";
 import SocialLinks from "./SocialLinks";
+import BNBPrice from "../../../components/BNBPrice/BNBPrice";
 
 interface Props extends PanelProps, PushedProps {}
 
@@ -28,7 +29,7 @@ const PriceLink = styled.a`
 const SettingsEntry = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: ${MENU_ENTRY_HEIGHT}px;
   padding: 0 8px;
 `;
@@ -45,13 +46,19 @@ const PanelFooter: React.FC<Props> = ({
   isPushed,
   toggleTheme,
   isDark,
+  bnbPriceUsd,
 }) => {
   return (
-    <Container>
-      <SocialEntry>
-        <SocialLinks />
-      </SocialEntry>
-    </Container>
+    <>
+      <SettingsEntry>
+        <BNBPrice bnbPriceUsd={bnbPriceUsd} />
+      </SettingsEntry>
+      <Container>
+        <SocialEntry>
+          <SocialLinks />
+        </SocialEntry>
+      </Container>
+    </>
   );
 };
 

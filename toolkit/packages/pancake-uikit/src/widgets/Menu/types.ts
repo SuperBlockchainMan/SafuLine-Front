@@ -31,6 +31,7 @@ export interface NavProps {
   buyCakeLabel: string;
   langs: Language[];
   setLang: (lang: Language) => void;
+  bnbPriceUsd?: number;
 }
 
 export interface PanelProps {

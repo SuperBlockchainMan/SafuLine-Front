@@ -85,6 +85,7 @@ const Menu: React.FC<NavProps> = ({
   langs,
   buyCakeLabel,
   children,
+  bnbPriceUsd,
 }) => {
   const { isMobile } = useMatchBreakpoints();
   const [showMenu, setShowMenu] = useState(true);
@@ -147,11 +148,6 @@ const Menu: React.FC<NavProps> = ({
             />
           </Flex>
           <Flex alignItems="center" height="100%">
-            {!isMobile && (
-              <Box mr="12px">
-                <CakePrice cakePriceUsd={cakePriceUsd} />
-              </Box>
-            )}
             <Box mt="4px">
               <LangSelector
                 currentLang={currentLang}
@@ -187,6 +183,7 @@ const Menu: React.FC<NavProps> = ({
           isDark={isDark}
           toggleTheme={toggleTheme}
           links={links}
+          bnbPriceUsd={bnbPriceUsd}
         />
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
