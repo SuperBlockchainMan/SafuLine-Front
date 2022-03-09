@@ -18,6 +18,16 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
   },
   {
+    pid: 502,
+    lpSymbol: 'SFLN-BNB LP',
+    lpAddresses: {
+      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+      56: '0x870c59c89cda44d853e2441a4c67ca24fb21d90c',
+    },
+    token: serializedTokens.sfln,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
     pid: 251,
     lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {

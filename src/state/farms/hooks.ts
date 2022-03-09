@@ -156,3 +156,18 @@ export const usePriceCakeBusd = (): BigNumber => {
 
   return cakePriceBusd
 }
+
+/**
+ * @@deprecated use the BUSD hook in /hooks
+ */
+export const usePriceSafuBusd = (): BigNumber => {
+  const sflnBnbFarm = useFarmFromPid(502)
+
+  const sflnPriceBusdAsString = sflnBnbFarm.tokenPriceBusd
+
+  const sflnPriceBusd = useMemo(() => {
+    return new BigNumber(sflnPriceBusdAsString)
+  }, [sflnPriceBusdAsString])
+
+  return sflnPriceBusd
+}

@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import PhishingWarningBanner from 'components/PhishingWarningBanner'
 import useTheme from 'hooks/useTheme'
 import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeBusd, usePriceSafuBusd } from 'state/farms/hooks'
 import { usePhishingBannerManager } from 'state/user/hooks'
 import config from './config/config'
 import UserMenu from './UserMenu'
@@ -17,6 +17,7 @@ import { footerLinks } from './config/footerConfig'
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const cakePriceUsd = usePriceCakeBusd()
+  const safuPriceUsd = usePriceSafuBusd()
   const bnbBusdPrice = useBNBBusdPrice()
   const { currentLanguage, setLanguage, t } = useTranslation()
   const { pathname } = useLocation()
@@ -34,13 +35,12 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      cakePriceUsd={safuPriceUsd.toNumber()}
       links={config(t)}
       footerLinks={footerLinks(t)}
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
       buyCakeLabel={t('Buy CAKE')}
-      bnbPriceUsd={bnbBusdPrice}
       {...props}
     />
   )
