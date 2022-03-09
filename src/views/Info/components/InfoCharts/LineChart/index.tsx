@@ -38,7 +38,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
       <AreaChart
         data={data}
         width={300}
-        height={308}
+        height={208}
         margin={{
           top: 5,
           right: 15,

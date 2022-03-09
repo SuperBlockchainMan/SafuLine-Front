@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import styled from 'styled-components'
 import { Text, Box, Card, Flex, Skeleton } from '@pancakeswap/uikit'
 import LineChart from 'views/Info/components/InfoCharts/LineChart'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
@@ -8,6 +9,10 @@ import { useTranslation } from 'contexts/Localization'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import { ChartEntry, TokenData, PriceChartEntry } from 'state/info/types'
 import { fromUnixTime } from 'date-fns'
+
+const StyledCard = styled(Card)`
+  width: 100%;
+`
 
 enum ChartView {
   LIQUIDITY,
@@ -78,7 +83,7 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
   }
 
   return (
-    <Card>
+    <StyledCard>
       <TabToggleGroup>
         <TabToggle isActive={view === ChartView.VOLUME} onClick={() => setView(ChartView.VOLUME)}>
           <Text>{t('Volume')}</Text>
@@ -100,7 +105,7 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
         </Text>
       </Flex>
 
-      <Box px="24px" height={variant === 'token' ? '250px' : '335px'}>
+      <Box px="24px" height='150px'>
         {view === ChartView.LIQUIDITY ? (
           <LineChart data={formattedTvlData} setHoverValue={setHoverValue} setHoverDate={setHoverDate} />
         ) : view === ChartView.VOLUME ? (
@@ -109,7 +114,7 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
           <CandleChart data={tokenPriceData} setValue={setHoverValue} setLabel={setHoverDate} />
         ) : null}
       </Box>
-    </Card>
+    </StyledCard>
   )
 }
 
