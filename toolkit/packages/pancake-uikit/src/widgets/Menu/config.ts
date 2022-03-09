@@ -158,24 +158,19 @@ export const userMenulinks: DropdownMenuItems[] = [
 
 export const socials = [
   {
-    label: "Audit",
-    icon: "AuditIcon",
-    href: "https://www.certik.com/pancakeswap/",
+    label: "Telegram",
+    icon: "TelegramIcon",
+    href: "https://t.me/safuline",
   },
   {
     label: "Telegram",
     icon: "TelegramIcon",
-    href: "https://t.me/pancakeswap",
+    href: "https://t.me/safulinecomm",
   },
   {
     label: "Twitter",
     icon: "TwitterIcon",
-    href: "https://twitter.com/pancakeswap",
-  },
-  {
-    label: "Reddit",
-    icon: "RedditIcon",
-    href: "https://www.reddit.com/r/pancakeswap/",
+    href: "https://twitter.com/safuline",
   },
 ];
 
