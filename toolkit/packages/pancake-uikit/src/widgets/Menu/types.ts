@@ -31,14 +31,13 @@ export interface NavProps {
   buyCakeLabel: string;
   langs: Language[];
   setLang: (lang: Language) => void;
-  bnbPriceUsd?: number;
 }
 
 export interface PanelProps {
   isDark: boolean;
   toggleTheme: (isDark: boolean) => void;
   links: Array<MenuItemsType>;
-  bnbPriceUsd?: number;
+  cakePriceUsd?: number;
 }
 
 export interface NavProps extends PanelProps {

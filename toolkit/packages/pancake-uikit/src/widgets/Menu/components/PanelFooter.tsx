@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MENU_ENTRY_HEIGHT } from "../config";
 import { PanelProps, PushedProps } from "../types";
 import SocialLinks from "./SocialLinks";
-import BNBPrice from "../../../components/BNBPrice/BNBPrice";
+import CakePrice from "../../../components/CakePrice/CakePrice";
 
 interface Props extends PanelProps, PushedProps {}
 
@@ -46,12 +46,12 @@ const PanelFooter: React.FC<Props> = ({
   isPushed,
   toggleTheme,
   isDark,
-  bnbPriceUsd,
+  cakePriceUsd,
 }) => {
   return (
     <>
       <SettingsEntry>
-        <BNBPrice bnbPriceUsd={bnbPriceUsd} />
+        <CakePrice cakePriceUsd={cakePriceUsd} />
       </SettingsEntry>
       <Container>
         <SocialEntry>
