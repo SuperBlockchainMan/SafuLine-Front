@@ -5,13 +5,13 @@ import { nftsBaseUrl } from 'views/Nft/market/constants'
 export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
 
 const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
-  {
-    label: t('Home'),
-    icon: 'HomeIcon',
-    href: '/',
-    showItemsOnMobile: false,
-    items: [],
-  },
+  // {
+  //   label: t('Home'),
+  //   icon: 'HomeIcon',
+  //   href: '/',
+  //   showItemsOnMobile: false,
+  //   items: [],
+  // },
   {
     label: t('Swap'),
     href: '/swap',
@@ -33,8 +33,8 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
-    label: "Tokens",
-    href: "/more",
+    label: "Launchpad",
+    href: "/launchpad",
     icon: "TokenIcon",
     items: [],
   },

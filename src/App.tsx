@@ -41,6 +41,7 @@ const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const Lottery = lazy(() => import('./views/Lottery'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
+const ComingSoon = lazy(() => import('./views/ComingSoon'))
 const Teams = lazy(() => import('./views/Teams'))
 const Team = lazy(() => import('./views/Teams/Team'))
 const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
@@ -84,14 +85,14 @@ const App: React.FC = () => {
       <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
             <Route exact path="/farms/auction">
               <FarmAuction />
             </Route>
             <Route path="/farms">
               <Farms />
+            </Route>
+            <Route path="/launchpad">
+              <ComingSoon />
             </Route>
             <Route path="/pools">
               <Pools />
@@ -145,6 +146,7 @@ const App: React.FC = () => {
             </Route>
 
             {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
+            <Route exact strict path="/" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
