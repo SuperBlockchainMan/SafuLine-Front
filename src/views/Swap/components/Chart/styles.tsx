@@ -8,12 +8,12 @@ export const StyledPriceChart = styled(Box)<{ $isDark: boolean; $isExpanded: boo
   padding-top: 36px;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 8px;
-    background: ${({ $isDark }) => ($isDark ? 'rgba(39, 38, 44, 0.5)' : 'rgba(255, 255, 255, 0.5)')};
     border: ${({ theme }) => `1px solid ${theme.colors.cardBorder}`};
     border-radius: ${({ $isExpanded }) => ($isExpanded ? '0' : '16px')};
     width: ${({ $isExpanded }) => ($isExpanded ? '100%' : '50%')};
     height: ${({ $isExpanded }) => ($isExpanded ? 'calc(100vh - 100px)' : '504px')};
   }
+  background: rgb(39 38 44);
 `
 
 StyledPriceChart.defaultProps = {

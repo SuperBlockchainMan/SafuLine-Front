@@ -78,25 +78,8 @@ const PriceChart = ({
             >
               {isDesktop ? t('Basic') : <LineGraphIcon color="primary" />}
             </ChartButton>
-            <ChartButton
-              aria-label="TradingView"
-              title="TradingView"
-              $active={chartView === ChartViewMode.TRADING_VIEW}
-              scale="sm"
-              variant="text"
-              onClick={() => setChartView(ChartViewMode.TRADING_VIEW)}
-            >
-              {isDesktop ? 'TradingView' : <TradingViewIcon color="primary" />}
-            </ChartButton>
           </Flex>
         </Flex>
-        {!isMobile && (
-          <Flex>
-            <IconButton variant="text" onClick={toggleExpanded}>
-              {isChartExpanded ? <ShrinkIcon color="text" /> : <ExpandIcon color="text" />}
-            </IconButton>
-          </Flex>
-        )}
       </Flex>
       {chartView === ChartViewMode.BASIC && (
         <BasicChart

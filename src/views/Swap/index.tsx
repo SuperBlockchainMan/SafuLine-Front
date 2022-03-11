@@ -36,7 +36,6 @@ import ImportTokenWarningModal from './components/ImportTokenWarningModal'
 import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
@@ -73,7 +72,7 @@ import CurrencyInputHeader from './components/CurrencyInputHeader'
 import { getTokenAddress } from './components/Chart/utils'
 import TokenInfo from './components/TokenInfo'
 import TokenDataCard from './components/TokenData/TokenDataCard'
-import TransactionTable from './components/TokenData/TransactionTable'
+import TokenChartCard from './components/TokenData/TokenChartCard'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -651,7 +650,7 @@ export default function Swap({ history }: RouteComponentProps) {
           setIsOpen={() => {setUserLiquidityCardPreference(!userLiquidityCardPreference)}}
         />
         <BottomDrawer
-          content={<TransactionTable address={tokenAddress} drawer />}
+          content={<TokenChartCard address={tokenAddress} drawer />}
           isOpen={userTransactionCardPreference}
           setIsOpen={() => {setUserTransactionCardPreference(!userTransactionCardPreference)}}
         />

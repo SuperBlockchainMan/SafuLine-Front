@@ -40,16 +40,13 @@ const SwapBottomMenu: React.FC = () => {
   return (
     <StyledSwapBottomMenuArea width="100%" justifyContent="center" alignItems="center">
       <Flex flexDirection="column" alignItems="center" onClick={handleChartClick} >
-        <ChartIcon />
         <Text>{t('Chart')}</Text>
       </Flex>
       <Flex flexDirection="column" alignItems="center" onClick={handleLiquidityClick} >
-        <EarnIcon />
         <Text>{t('Liquidity')}</Text>
       </Flex>
       <Flex flexDirection="column" alignItems="center" onClick={handleTransactionClick} >
-        <TradeIcon />
-        <Text>{t('Transactions')}</Text>
+        <Text>{t('Price')}</Text>
       </Flex>
     </StyledSwapBottomMenuArea>
   )

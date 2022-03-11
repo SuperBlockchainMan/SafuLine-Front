@@ -12,6 +12,7 @@ import { fromUnixTime } from 'date-fns'
 
 const StyledCard = styled(Card)`
   width: 100%;
+  background-color: transparent;
 `
 
 enum ChartView {
